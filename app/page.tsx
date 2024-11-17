@@ -2,7 +2,7 @@
 "use client";
 
 import Layout from '../components/layout'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -45,7 +45,7 @@ export default function Home() {
   const [showBookingForm, setShowBookingForm] = useState(false)
   const [showBookingHistory, setShowBookingHistory] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log('Route planning:', { startAddress, endAddress, vehicle: selectedVehicle.name })
     // Here we would typically call an API to calculate the route and distance
