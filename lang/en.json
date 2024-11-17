@@ -9,6 +9,7 @@
   "name": "Name",
   "phone": "Phone",
   "email": "Email",
+  "password": "Password",
   "notes": "Notes",
   "book": "Book",
   "back": "Back",
@@ -20,5 +21,12 @@
   "enterStartAddress": "Enter the start address",
   "enterEndAddress": "Enter the end address",
   "standardVehicle": "Standard",
-  "standardVehicleDescription": "Comfortable vehicle for up to 4 people"
+  "standardVehicleDescription": "Comfortable vehicle for up to 4 people",
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "noAccount": "Don't have an account?",
+  "registerHere": "Register here",
+  "alreadyHaveAccount": "Already have an account?",
+  "loginHere": "Login here"
 }
