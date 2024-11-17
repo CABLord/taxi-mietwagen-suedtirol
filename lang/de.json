@@ -28,5 +28,14 @@
   "noAccount": "Noch kein Konto?",
   "registerHere": "Hier registrieren",
   "alreadyHaveAccount": "Bereits ein Konto?",
-  "loginHere": "Hier anmelden"
+  "loginHere": "Hier anmelden",
+  "bookingHistory": "Buchungsverlauf",
+  "newBooking": "Neue Buchung",
+  "noBookings": "Keine Buchungen vorhanden",
+  "from": "Von",
+  "to": "Nach",
+  "date": "Datum",
+  "fare": "Fahrpreis",
+  "completed": "Abgeschlossen",
+  "upcoming": "Bevorstehend"
 }

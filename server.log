@@ -269,13 +269,7 @@ https://nextjs.org/docs/messages/module-not-found
 
 Import trace for requested module:
 ./app/page.tsx
-0m
-[0m [90m 10 |[39m   startAddress[33m:[39m string[33m;[39m[0m
-
-https://nextjs.org/docs/messages/module-not-found
-
-Import trace for requested module:
-./app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/home/user/web-app/.next/cache/webpack/client-development/1.pack.gz_' -> '/home/user/web-app/.next/cache/webpack/client-development/1.pack.gz'
  ⨯ ./components/BookingForm.tsx:7:1
 Module not found: Can't resolve '@/components/ui/use-toast'
 [0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m
@@ -318,6 +312,76 @@ https://nextjs.org/docs/messages/module-not-found
 
 Import trace for requested module:
 ./app/page.tsx
+ ⨯ ./components/BookingForm.tsx:7:1
+Module not found: Can't resolve '@/components/ui/use-toast'
+[0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m
+[0m [90m  6 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[0m
+[0m[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { toast } [36mfrom[39m [32m"@/components/ui/use-toast"[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m  8 |[39m[0m
+[0m [90m  9 |[39m type [33mBookingFormProps[39m [33m=[39m {[0m
+[0m [90m 10 |[39m   startAddress[33m:[39m string[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./components/BookingForm.tsx:7:1
+Module not found: Can't resolve '@/components/ui/use-toast'
+[0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m
+[0m [90m  6 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[0m
+[0m[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { toast } [36mfrom[39m [32m"@/components/ui/use-toast"[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m  8 |[39m[0m
+[0m [90m  9 |[39m type [33mBookingFormProps[39m [33m=[39m {[0m
+[0m [90m 10 |[39m   startAddress[33m:[39m string[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+/use-toast'
+[0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m
+[0m [90m  6 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[0m
+[0m[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { toast } [36mfrom[39m [32m"@/components/ui/use-toast"[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m  8 |[39m[0m
+[0m [90m  9 |[39m type [33mBookingFormProps[39m [33m=[39m {[0m
+[0m [90m 10 |[39m   startAddress[33m:[39m string[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./components/BookingForm.tsx:7:1
+Module not found: Can't resolve '@/components/ui/use-toast'
+[0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m
+[0m [90m  6 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[0m
+[0m[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { toast } [36mfrom[39m [32m"@/components/ui/use-toast"[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m  8 |[39m[0m
+[0m [90m  9 |[39m type [33mBookingFormProps[39m [33m=[39m {[0m
+[0m [90m 10 |[39m   startAddress[33m:[39m string[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+ ⨯ ./components/BookingForm.tsx:7:1
+Module not found: Can't resolve '@/components/ui/use-toast'
+[0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m
+[0m [90m  6 |[39m [36mimport[39m { [33mTextarea[39m } [36mfrom[39m [32m"@/components/ui/textarea"[39m[0m
+[0m[31m[1m>[22m[39m[90m  7 |[39m [36mimport[39m { toast } [36mfrom[39m [32m"@/components/ui/use-toast"[39m[0m
+[0m [90m    |[39m [31m[1m^[22m[39m[0m
+[0m [90m  8 |[39m[0m
+[0m [90m  9 |[39m type [33mBookingFormProps[39m [33m=[39m {[0m
+[0m [90m 10 |[39m   startAddress[33m:[39m string[33m;[39m[0m
+
+https://nextjs.org/docs/messages/module-not-found
+
+Import trace for requested module:
+./app/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename '/home/user/web-app/.next/cache/webpack/client-development/0.pack.gz_' -> '/home/user/web-app/.next/cache/webpack/client-development/0.pack.gz'
  ⨯ ./components/BookingForm.tsx:7:1
 Module not found: Can't resolve '@/components/ui/use-toast'
 [0m [90m  5 |[39m [36mimport[39m { [33mLabel[39m } [36mfrom[39m [32m"@/components/ui/label"[39m[0m

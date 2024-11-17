@@ -28,5 +28,14 @@
   "noAccount": "Don't have an account?",
   "registerHere": "Register here",
   "alreadyHaveAccount": "Already have an account?",
-  "loginHere": "Login here"
+  "loginHere": "Login here",
+  "bookingHistory": "Booking History",
+  "newBooking": "New Booking",
+  "noBookings": "No bookings available",
+  "from": "From",
+  "to": "To",
+  "date": "Date",
+  "fare": "Fare",
+  "completed": "Completed",
+  "upcoming": "Upcoming"
 }
