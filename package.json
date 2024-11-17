@@ -70,5 +70,12 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
     "typescript": "^5"
+    "eslint": "^8.x.x",
+    "eslint-config-prettier": "^9.x.x",
+    "eslint-plugin-react": "^7.x.x",
+    "eslint-plugin-react-hooks": "^4.x.x",
+    "eslint-plugin-jsx-a11y": "^6.x.x",
+    "@typescript-eslint/eslint-plugin": "^6.x.x",
+    "@typescript-eslint/parser": "^6.x.x"
   }
 }
