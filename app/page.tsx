@@ -11,10 +11,12 @@ import dynamic from 'next/dynamic'
 import VehicleSelection from '../components/VehicleSelection'
 import BookingForm from '../components/BookingForm'
 import { Toaster } from "@/components/ui/toaster"
+import { useLanguage } from '../components/LanguageContext'
+import { FormattedMessage, useIntl } from 'react-intl'
 
 const MapComponent = dynamic(() => import('../components/MapComponent'), {
   ssr: false,
-  loading: () => <p>Karte wird geladen...</p>
+  loading: () => <p><FormattedMessage id="loading" /></p>
 })
 
 type Vehicle = {
@@ -25,13 +27,15 @@ type Vehicle = {
 };
 
 export default function Home() {
+  const { locale, setLocale } = useLanguage()
+  const intl = useIntl()
   const [startAddress, setStartAddress] = useState('')
   const [endAddress, setEndAddress] = useState('')
   const [estimatedFare, setEstimatedFare] = useState<number | null>(null)
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle>({
     id: 'standard',
-    name: 'Standard',
-    description: 'Komfortables Fahrzeug für bis zu 4 Personen',
+    name: intl.formatMessage({ id: 'standardVehicle' }),
+    description: intl.formatMessage({ id: 'standardVehicleDescription' }),
     priceMultiplier: 1
   })
   const [showBookingForm, setShowBookingForm] = useState(false)
@@ -61,42 +65,63 @@ export default function Home() {
     setShowBookingForm(false)
   }
 
+  const toggleLanguage = () => {
+    setLocale(locale === 'de' ? 'en' : 'de')
+  }
+
   return (
     <Layout>
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold mb-6 text-center">Willkommen bei Südtirol Taxi & Mietwagen</h1>
+        <div className="flex justify-between items-center mb-6">
+          <h1 className="text-3xl font-bold text-center">
+            <FormattedMessage id="welcome" />
+          </h1>
+          <Button onClick={toggleLanguage}>
+            {locale === 'de' ? 'English' : 'Deutsch'}
+          </Button>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <div className="space-y-6">
             {!showBookingForm ? (
               <>
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <Label htmlFor="startAddress">Startadresse</Label>
+                    <Label htmlFor="startAddress">
+                      <FormattedMessage id="startAddress" />
+                    </Label>
                     <Input
                       id="startAddress"
                       value={startAddress}
                       onChange={(e) => setStartAddress(e.target.value)}
-                      placeholder="Geben Sie die Startadresse ein"
+                      placeholder={intl.formatMessage({ id: 'enterStartAddress' })}
                       required
                     />
                   </div>
                   <div>
-                    <Label htmlFor="endAddress">Zieladresse</Label>
+                    <Label htmlFor="endAddress">
+                      <FormattedMessage id="endAddress" />
+                    </Label>
                     <Input
                       id="endAddress"
                       value={endAddress}
                       onChange={(e) => setEndAddress(e.target.value)}
-                      placeholder="Geben Sie die Zieladresse ein"
+                      placeholder={intl.formatMessage({ id: 'enterEndAddress' })}
                       required
                     />
                   </div>
-                  <Button type="submit" className="w-full">Route planen</Button>
+                  <Button type="submit" className="w-full">
+                    <FormattedMessage id="planRoute" />
+                  </Button>
                 </form>
                 <VehicleSelection onVehicleSelect={handleVehicleSelect} />
                 {estimatedFare !== null && (
                   <div className="p-4 bg-green-100 rounded-md">
-                    <p className="font-bold">Geschätzter Fahrpreis: {estimatedFare.toFixed(2)} €</p>
-                    <p className="text-sm">Fahrzeug: {selectedVehicle.name}</p>
+                    <p className="font-bold">
+                      <FormattedMessage id="estimatedFare" />: {estimatedFare.toFixed(2)} €
+                    </p>
+                    <p className="text-sm">
+                      <FormattedMessage id="vehicle" />: {selectedVehicle.name}
+                    </p>
                   </div>
                 )}
               </>
