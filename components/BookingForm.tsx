@@ -11,27 +11,43 @@ type BookingFormProps = {
   endAddress: string;
   estimatedFare: number | null;
   selectedVehicle: { name: string };
+  onBack: () => void;
 };
 
-const BookingForm = ({ startAddress, endAddress, estimatedFare, selectedVehicle }: BookingFormProps) => {
+const BookingForm = ({ startAddress, endAddress, estimatedFare, selectedVehicle, onBack }: BookingFormProps) => {
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
   const [notes, setNotes] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the booking data to your backend
-    console.log('Booking submitted:', { name, phone, email, notes, startAddress, endAddress, estimatedFare, selectedVehicle });
-    toast({
-      title: "Buchung erfolgreich",
-      description: "Ihre Fahrt wurde gebucht. Wir werden Sie bald kontaktieren.",
-    });
-    // Reset form
-    setName('');
-    setPhone('');
-    setEmail('');
-    setNotes('');
+    setIsSubmitting(true);
+    try {
+      // Here you would typically send the booking data to your backend
+      // Simulating an API call with a timeout
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      console.log('Booking submitted:', { name, phone, email, notes, startAddress, endAddress, estimatedFare, selectedVehicle });
+      toast({
+        title: "Buchung erfolgreich",
+        description: "Ihre Fahrt wurde gebucht. Wir werden Sie bald kontaktieren.",
+      });
+      // Reset form
+      setName('');
+      setPhone('');
+      setEmail('');
+      setNotes('');
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      toast({
+        title: "Fehler",
+        description: "Es gab ein Problem bei der Buchung. Bitte versuchen Sie es später erneut.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -82,7 +98,12 @@ const BookingForm = ({ startAddress, endAddress, estimatedFare, selectedVehicle 
           <p><strong>Geschätzter Fahrpreis:</strong> {estimatedFare.toFixed(2)} €</p>
         )}
       </div>
-      <Button type="submit" className="w-full">Buchen</Button>
+      <div className="flex space-x-2">
+        <Button type="button" variant="outline" onClick={onBack} className="w-1/2">Zurück</Button>
+        <Button type="submit" className="w-1/2" disabled={isSubmitting}>
+          {isSubmitting ? 'Wird gebucht...' : 'Buchen'}
+        </Button>
+      </div>
     </form>
   );
 };

@@ -57,12 +57,16 @@ export default function Home() {
     }
   }
 
+  const handleBack = () => {
+    setShowBookingForm(false)
+  }
+
   return (
     <Layout>
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4">Willkommen bei Südtirol Taxi & Mietwagen</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="space-y-4">
+      <div className="max-w-6xl mx-auto px-4">
+        <h1 className="text-3xl font-bold mb-6 text-center">Willkommen bei Südtirol Taxi & Mietwagen</h1>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div className="space-y-6">
             {!showBookingForm ? (
               <>
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -90,7 +94,7 @@ export default function Home() {
                 </form>
                 <VehicleSelection onVehicleSelect={handleVehicleSelect} />
                 {estimatedFare !== null && (
-                  <div className="mt-4 p-4 bg-green-100 rounded-md">
+                  <div className="p-4 bg-green-100 rounded-md">
                     <p className="font-bold">Geschätzter Fahrpreis: {estimatedFare.toFixed(2)} €</p>
                     <p className="text-sm">Fahrzeug: {selectedVehicle.name}</p>
                   </div>
@@ -102,10 +106,11 @@ export default function Home() {
                 endAddress={endAddress}
                 estimatedFare={estimatedFare}
                 selectedVehicle={selectedVehicle}
+                onBack={handleBack}
               />
             )}
           </div>
-          <div className="h-[400px]">
+          <div className="h-[400px] lg:h-[600px]">
             <MapComponent />
           </div>
         </div>
