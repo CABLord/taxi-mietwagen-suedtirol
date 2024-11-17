@@ -1,10 +1,12 @@
 
-import { useState } from 'react';
+"use client"
+
+import React, { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Textarea } from "@/components/ui/textarea"
-import { toast } from "@/components/ui/use-toast"
+import { useToast } from "@/components/ui/use-toast"
 import { useIntl, FormattedMessage } from 'react-intl';
 
 type BookingFormProps = {
@@ -15,42 +17,35 @@ type BookingFormProps = {
   onBack: () => void;
 };
 
-const BookingForm = ({ startAddress, endAddress, estimatedFare, selectedVehicle, onBack }: BookingFormProps) => {
+export function BookingForm({ startAddress, endAddress, estimatedFare, selectedVehicle, onBack }: BookingFormProps) {
   const intl = useIntl();
-  const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [email, setEmail] = useState('');
-  const [notes, setNotes] = useState('');
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast()
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    notes: '',
+  })
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    try {
-      // Here you would typically send the booking data to your backend
-      // Simulating an API call with a timeout
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log('Booking submitted:', { name, phone, email, notes, startAddress, endAddress, estimatedFare, selectedVehicle });
-      toast({
-        title: intl.formatMessage({ id: 'bookingSuccessTitle' }),
-        description: intl.formatMessage({ id: 'bookingSuccessDescription' }),
-      });
-      // Reset form
-      setName('');
-      setPhone('');
-      setEmail('');
-      setNotes('');
-    } catch (error) {
-      console.error('Error submitting booking:', error);
-      toast({
-        title: intl.formatMessage({ id: 'bookingErrorTitle' }),
-        description: intl.formatMessage({ id: 'bookingErrorDescription' }),
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
-  };
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // Here you would typically send the form data to your backend
+    console.log('Booking submitted:', { ...formData, startAddress, endAddress, estimatedFare, selectedVehicle })
+    toast({
+      title: intl.formatMessage({ id: 'bookingSuccessTitle' }),
+      description: intl.formatMessage({ id: 'bookingSuccessDescription' }),
+    })
+    // Reset form
+    setFormData({ name: '', email: '', phone: '', notes: '' })
+  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
@@ -59,40 +54,44 @@ const BookingForm = ({ startAddress, endAddress, estimatedFare, selectedVehicle,
         <Label htmlFor="name"><FormattedMessage id="name" /></Label>
         <Input
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
           required
           placeholder={intl.formatMessage({ id: 'enterName' })}
-        />
-      </div>
-      <div>
-        <Label htmlFor="phone"><FormattedMessage id="phone" /></Label>
-        <Input
-          id="phone"
-          type="tel"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-          required
-          placeholder={intl.formatMessage({ id: 'enterPhone' })}
         />
       </div>
       <div>
         <Label htmlFor="email"><FormattedMessage id="email" /></Label>
         <Input
           id="email"
+          name="email"
           type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={formData.email}
+          onChange={handleChange}
           required
           placeholder={intl.formatMessage({ id: 'enterEmail' })}
+        />
+      </div>
+      <div>
+        <Label htmlFor="phone"><FormattedMessage id="phone" /></Label>
+        <Input
+          id="phone"
+          name="phone"
+          type="tel"
+          value={formData.phone}
+          onChange={handleChange}
+          required
+          placeholder={intl.formatMessage({ id: 'enterPhone' })}
         />
       </div>
       <div>
         <Label htmlFor="notes"><FormattedMessage id="notes" /></Label>
         <Textarea
           id="notes"
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
+          name="notes"
+          value={formData.notes}
+          onChange={handleChange}
           placeholder={intl.formatMessage({ id: 'enterNotes' })}
         />
       </div>
@@ -108,12 +107,10 @@ const BookingForm = ({ startAddress, endAddress, estimatedFare, selectedVehicle,
         <Button type="button" variant="outline" onClick={onBack} className="w-1/2">
           <FormattedMessage id="back" />
         </Button>
-        <Button type="submit" className="w-1/2" disabled={isSubmitting}>
-          {isSubmitting ? <FormattedMessage id="booking" /> : <FormattedMessage id="book" />}
+        <Button type="submit" className="w-1/2">
+          <FormattedMessage id="book" />
         </Button>
       </div>
     </form>
-  );
-};
-
-export default BookingForm;
+  )
+}
