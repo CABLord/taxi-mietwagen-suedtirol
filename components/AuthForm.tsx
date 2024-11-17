@@ -1,56 +1,40 @@
 
+"use client"
+
 import React, { useState } from 'react';
-import { useAuth } from './AuthContext';
-import { useLanguage } from './LanguageContext';
-import { FormattedMessage, useIntl } from 'react-intl';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useAuth } from './AuthContext'
+import { useToast } from "@/components/ui/use-toast"
+import { FormattedMessage, useIntl } from 'react-intl'
 
 const AuthForm: React.FC = () => {
-  const [isLogin, setIsLogin] = useState(true);
-  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login, register } = useAuth();
-  const { locale } = useLanguage();
+  const { login } = useAuth();
+  const { toast } = useToast();
   const intl = useIntl();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      if (isLogin) {
-        await login(email, password);
-      } else {
-        await register(name, email, password);
-      }
+      await login(email, password);
+      toast({
+        title: intl.formatMessage({ id: 'loginSuccessTitle' }),
+        description: intl.formatMessage({ id: 'loginSuccessDescription' }),
+      });
     } catch (error) {
-      console.error('Authentication error:', error);
-      // Here you would typically show an error message to the user
+      toast({
+        title: intl.formatMessage({ id: 'loginErrorTitle' }),
+        description: intl.formatMessage({ id: 'loginErrorDescription' }),
+        variant: "destructive",
+      });
     }
   };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h2 className="text-2xl font-bold">
-        {isLogin ? (
-          <FormattedMessage id="login" />
-        ) : (
-          <FormattedMessage id="register" />
-        )}
-      </h2>
-      {!isLogin && (
-        <div>
-          <Label htmlFor="name"><FormattedMessage id="name" /></Label>
-          <Input
-            id="name"
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        </div>
-      )}
       <div>
         <Label htmlFor="email"><FormattedMessage id="email" /></Label>
         <Input
@@ -59,6 +43,7 @@ const AuthForm: React.FC = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          placeholder={intl.formatMessage({ id: 'enterEmail' })}
         />
       </div>
       <div>
@@ -69,32 +54,12 @@ const AuthForm: React.FC = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          placeholder={intl.formatMessage({ id: 'enterPassword' })}
         />
       </div>
       <Button type="submit" className="w-full">
-        {isLogin ? (
-          <FormattedMessage id="login" />
-        ) : (
-          <FormattedMessage id="register" />
-        )}
+        <FormattedMessage id="login" />
       </Button>
-      <p className="text-center">
-        {isLogin ? (
-          <>
-            <FormattedMessage id="noAccount" />{' '}
-            <button type="button" onClick={() => setIsLogin(false)} className="text-blue-500 hover:underline">
-              <FormattedMessage id="registerHere" />
-            </button>
-          </>
-        ) : (
-          <>
-            <FormattedMessage id="alreadyHaveAccount" />{' '}
-            <button type="button" onClick={() => setIsLogin(true)} className="text-blue-500 hover:underline">
-              <FormattedMessage id="loginHere" />
-            </button>
-          </>
-        )}
-      </p>
     </form>
   );
 };
