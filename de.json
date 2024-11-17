@@ -1,0 +1,22 @@
+{
+  "bookRide": "Fahrt buchen",
+  "name": "Name",
+  "enterName": "Geben Sie Ihren Namen ein",
+  "phone": "Telefon",
+  "enterPhone": "Geben Sie Ihre Telefonnummer ein",
+  "email": "E-Mail",
+  "enterEmail": "Geben Sie Ihre E-Mail-Adresse ein",
+  "notes": "Anmerkungen",
+  "enterNotes": "Besondere W\u00fcnsche oder Anmerkungen?",
+  "start": "Start",
+  "destination": "Ziel",
+  "vehicle": "Fahrzeug",
+  "estimatedFare": "Gesch\u00e4tzter Fahrpreis",
+  "back": "Zur\u00fcck",
+  "booking": "Wird gebucht...",
+  "book": "Buchen",
+  "bookingSuccessTitle": "Buchung erfolgreich",
+  "bookingSuccessDescription": "Ihre Fahrt wurde gebucht. Wir werden Sie bald kontaktieren.",
+  "bookingErrorTitle": "Buchungsfehler",
+  "bookingErrorDescription": "Es gab ein Problem bei der Buchung. Bitte versuchen Sie es sp\u00e4ter erneut."
+}
