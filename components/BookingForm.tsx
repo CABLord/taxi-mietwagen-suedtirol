@@ -26,6 +26,7 @@ export function BookingForm({ startAddress, endAddress, estimatedFare, selectedV
     phone: '',
     notes: '',
   })
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -37,14 +38,27 @@ export function BookingForm({ startAddress, endAddress, estimatedFare, selectedV
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    // Here you would typically send the form data to your backend
-    console.log('Booking submitted:', { ...formData, startAddress, endAddress, estimatedFare, selectedVehicle })
-    toast({
-      title: intl.formatMessage({ id: 'bookingSuccessTitle' }),
-      description: intl.formatMessage({ id: 'bookingSuccessDescription' }),
-    })
-    // Reset form
-    setFormData({ name: '', email: '', phone: '', notes: '' })
+    setIsSubmitting(true);
+    try {
+      // Here you would typically send the form data to your backend
+      await new Promise(resolve => setTimeout(resolve, 1000)); // Simulating API call
+      console.log('Booking submitted:', { ...formData, startAddress, endAddress, estimatedFare, selectedVehicle })
+      toast({
+        title: intl.formatMessage({ id: 'bookingSuccessTitle' }),
+        description: intl.formatMessage({ id: 'bookingSuccessDescription' }),
+      })
+      // Reset form
+      setFormData({ name: '', email: '', phone: '', notes: '' })
+    } catch (error) {
+      console.error('Error submitting booking:', error);
+      toast({
+        title: intl.formatMessage({ id: 'bookingErrorTitle' }),
+        description: intl.formatMessage({ id: 'bookingErrorDescription' }),
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return (
@@ -107,8 +121,8 @@ export function BookingForm({ startAddress, endAddress, estimatedFare, selectedV
         <Button type="button" variant="outline" onClick={onBack} className="w-1/2">
           <FormattedMessage id="back" />
         </Button>
-        <Button type="submit" className="w-1/2">
-          <FormattedMessage id="book" />
+        <Button type="submit" className="w-1/2" disabled={isSubmitting}>
+          {isSubmitting ? <FormattedMessage id="booking" /> : <FormattedMessage id="book" />}
         </Button>
       </div>
     </form>
