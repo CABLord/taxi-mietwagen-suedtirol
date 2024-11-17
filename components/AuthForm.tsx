@@ -19,12 +19,12 @@ const AuthForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      await login(email);
       toast({
         title: intl.formatMessage({ id: 'loginSuccessTitle' }),
         description: intl.formatMessage({ id: 'loginSuccessDescription' }),
       });
-    } catch (error) {
+    } catch {
       toast({
         title: intl.formatMessage({ id: 'loginErrorTitle' }),
         description: intl.formatMessage({ id: 'loginErrorDescription' }),
