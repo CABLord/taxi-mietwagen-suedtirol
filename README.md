@@ -1,36 +1,112 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-## Getting Started
+# Taxi & Mietwagen Südtirol
 
-First, run the development server:
+This project is a taxi and car rental booking system for Südtirol (South Tyrol). It features a user-friendly interface with internationalization support for German and English languages.
+
+## Internationalization Tutorial
+
+This guide will help you understand how internationalization is implemented in this project and how to extend it for new features or additional languages.
+
+### 1. Setup
+
+The project uses `react-intl` for internationalization. Make sure it's installed in your project:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install react-intl
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Language Files
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Language-specific strings are stored in JSON files:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- `en.json` for English
+- `de.json` for German
 
-## Learn More
+These files are located in the root directory of the project.
 
-To learn more about Next.js, take a look at the following resources:
+To add a new translation:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Open both `en.json` and `de.json`.
+2. Add a new key-value pair in both files:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```json
+   {
+     "existingKey": "Existing translation",
+     "newKey": "New translation"
+   }
+   ```
 
-## Deploy on Vercel
+3. Provide the appropriate translation for each language.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 3. Using Translations in Components
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+To use translations in your React components:
+
+1. Import necessary components and hooks:
+
+   ```typescript
+   import { useIntl, FormattedMessage } from 'react-intl';
+   ```
+
+2. Use `FormattedMessage` for inline translations:
+
+   ```tsx
+   <h2><FormattedMessage id="bookRide" /></h2>
+   ```
+
+3. Use `useIntl` hook for dynamic values or non-JSX contexts:
+
+   ```typescript
+   const intl = useIntl();
+   const placeholderText = intl.formatMessage({ id: 'enterName' });
+   ```
+
+### 4. Adding a New Language
+
+To add support for a new language:
+
+1. Create a new JSON file for the language (e.g., `fr.json` for French).
+2. Copy the content from `en.json` and translate all values to the new language.
+3. Update the `LanguageContext.tsx` file:
+
+   ```typescript
+   import fr from '../fr.json';
+   
+   const languages: { [key: string]: any } = { en, de, fr };
+   ```
+
+4. Update any language selection UI to include the new language option.
+
+### 5. Best Practices
+
+- Keep translation keys descriptive and consistent.
+- Use placeholders for dynamic content: 
+  ```json
+  "welcome": "Welcome, {name}!"
+  ```
+  Then use it like this:
+  ```tsx
+  <FormattedMessage id="welcome" values={{ name: userName }} />
+  ```
+- Group related translations using nested objects if your translation library supports it.
+- Regularly review and update translations as the application evolves.
+
+### 6. Testing Internationalization
+
+To test the internationalization:
+
+1. Run the application locally.
+2. Switch between available languages.
+3. Verify that all text elements change according to the selected language.
+4. Test form submissions and error messages to ensure they're correctly translated.
+5. Check that dynamically generated content (like placeholders) is correctly translated.
+
+## Contributing
+
+When adding new features or modifying existing ones, please ensure that you:
+
+1. Add any new text as keys in all language files.
+2. Use `FormattedMessage` or `useIntl` for all user-facing strings.
+3. Update this README if you make any changes to the internationalization system.
+
+For any questions or issues related to internationalization, please open an issue in the project repository.
