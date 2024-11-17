@@ -1,16 +1,17 @@
 
+"use client"
+
 import React, { createContext, useState, useContext, useEffect } from 'react';
 
 interface User {
   id: string;
-  email: string;
   name: string;
+  email: string;
 }
 
 interface AuthContextType {
   user: User | null;
   login: (email: string, password: string) => Promise<void>;
-  register: (name: string, email: string, password: string) => Promise<void>;
   logout: () => void;
 }
 
@@ -20,7 +21,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
-    // Check if user is stored in localStorage
+    // Check if user is logged in (e.g., by checking local storage or making an API call)
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -28,35 +29,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const login = async (email: string, password: string) => {
-    const response = await fetch('/api/login', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Login failed');
-    }
-
-    const data = await response.json();
-    setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
-  };
-
-  const register = async (name: string, email: string, password: string) => {
-    const response = await fetch('/api/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, email, password }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Registration failed');
-    }
-
-    const data = await response.json();
-    setUser(data.user);
-    localStorage.setItem('user', JSON.stringify(data.user));
+    // Implement your login logic here
+    // For example:
+    // const response = await api.login(email, password);
+    // setUser(response.user);
+    // localStorage.setItem('user', JSON.stringify(response.user));
+    
+    // Mock login for demonstration
+    const mockUser = { id: '1', name: 'Test User', email: email };
+    setUser(mockUser);
+    localStorage.setItem('user', JSON.stringify(mockUser));
   };
 
   const logout = () => {
@@ -65,7 +47,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, register, logout }}>
+    <AuthContext.Provider value={{ user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
