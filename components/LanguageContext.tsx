@@ -1,10 +1,10 @@
 
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
-import en from '../lang/en.json';
-import de from '../lang/de.json';
+import en from '../en.json';
+import de from '../de.json';
 
-const languages = { en, de };
+const languages: { [key: string]: any } = { en, de };
 
 type LanguageContextType = {
   locale: string;
