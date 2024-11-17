@@ -1,19 +1,13 @@
 
 "use client"
 
-// Import the toast component if it exists
-let ToastComponent;
-try {
-  ToastComponent = require("@/components/ui/toast");
-} catch (error) {
-  console.warn("Toast component not found. Using dummy implementation.");
-}
+import { useToast as useToastOriginal } from "@/components/ui/toast"
 
-// Dummy implementation of useToast
-const dummyUseToast = () => ({
+// If useToastOriginal is undefined, provide a dummy implementation
+const dummyToast = () => ({
   toast: () => {},
   dismiss: () => {},
+  // Add any other methods that the original useToast might have
 });
 
-// Export the useToast function
-export const useToast = ToastComponent?.useToast || dummyUseToast;
+export const useToast = useToastOriginal || dummyToast;
