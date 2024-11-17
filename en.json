@@ -1,0 +1,22 @@
+{
+  "bookRide": "Book a Ride",
+  "name": "Name",
+  "enterName": "Enter your name",
+  "phone": "Phone",
+  "enterPhone": "Enter your phone number",
+  "email": "Email",
+  "enterEmail": "Enter your email",
+  "notes": "Notes",
+  "enterNotes": "Any special requests or notes?",
+  "start": "Start",
+  "destination": "Destination",
+  "vehicle": "Vehicle",
+  "estimatedFare": "Estimated Fare",
+  "back": "Back",
+  "booking": "Booking...",
+  "book": "Book",
+  "bookingSuccessTitle": "Booking Successful",
+  "bookingSuccessDescription": "Your ride has been booked. We'll contact you soon.",
+  "bookingErrorTitle": "Booking Error",
+  "bookingErrorDescription": "There was a problem with your booking. Please try again later."
+}
