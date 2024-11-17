@@ -1,3 +1,22 @@
-{
-  "extends": ["next/core-web-vitals", "next/typescript"]
-}
+module.exports = {
+  parser: "@typescript-eslint/parser", // Specifies the ESLint parser
+  parserOptions: {
+    ecmaVersion: 2020, // Allows for the parsing of modern ECMAScript features
+    sourceType: "module", // Allows for the use of imports
+    ecmaFeatures: {
+      jsx: true, // Allows for the parsing of JSX
+    },
+  },
+  extends: [
+    "plugin:@typescript-eslint/recommended", // Uses the recommended rules from the @typescript-eslint/eslint-plugin
+    "plugin:react/recommended", // Uses the recommended rules from @eslint-plugin-react
+    "plugin:react-hooks/recommended", // Uses the recommended rules for React hooks
+    "plugin:jsx-a11y/recommended", // Accessibility rules for JSX
+    "prettier", // Enables eslint-config-prettier to disable ESLint rules that might conflict with prettier
+  ],
+  rules: {
+    "@typescript-eslint/no-unused-vars": "warn",
+    "@typescript-eslint/no-empty-interface": "off",
+    // Add other rules or disable non-critical ones as needed
+  },
+};
