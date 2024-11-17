@@ -1,0 +1,24 @@
+
+> web-app@0.1.0 dev
+> next dev
+
+ ⚠ Port 3000 is in use, trying 3001 instead.
+  ▲ Next.js 14.2.16
+  - Local:        http://localhost:3001
+
+ ✓ Starting...
+ ✓ Ready in 2.3s
+ ○ Compiling / ...
+ ✓ Compiled / in 4.3s (560 modules)
+ HEAD / 200 in 4690ms
+ ✓ Compiled in 597ms (276 modules)
+ GET / 200 in 56ms
+ ○ Compiling /favicon.ico ...
+ ✓ Compiled /favicon.ico in 1053ms (315 modules)
+ GET /favicon.ico 200 in 1251ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 1326ms (580 modules)
+ GET /customer 404 in 132ms
+ GET / 200 in 71ms
+ GET /driver 404 in 24ms
+ GET / 200 in 39ms
