@@ -1,8 +1,12 @@
 
+"use client"
+
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
-import en from '../en.json';
-import de from '../de.json';
+
+// Import language files
+const en = require('../en.json');
+const de = require('../de.json');
 
 const languages: { [key: string]: any } = { en, de };
 
