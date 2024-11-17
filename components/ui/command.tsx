@@ -1,6 +1,3 @@
-
-tsx
-Code kopieren
 "use client";
 
 import * as React from "react";
